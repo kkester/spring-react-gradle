@@ -8,7 +8,7 @@ export const FriendList = (props: {
     return <div>No Friends yet...</div>
   }
   return (
-    <ul id="friend-list">
+    <ul>
       {props.friends.map((friend,i) => (
         <li key={'friend-list-'+i}>
           {friend.name}

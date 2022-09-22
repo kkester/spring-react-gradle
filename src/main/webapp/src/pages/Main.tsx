@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import '../css/Main.css';
 import { Friend, getFriends } from '../api/FriendApi';
-import { FriendList } from './FriendList';
+import { FriendList } from '../components/FriendList';
 
 export const Main = () => {
 
