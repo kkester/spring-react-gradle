@@ -1,4 +1,4 @@
-# spring-reactive-events
+# spring-react-gradle
 
 ### Overview
 
