@@ -5,7 +5,7 @@
 This PoC demonstrates the following architecture, design, and coding strategies:
 
 1. A single JAR containing a React frontend and spring boot backend
-2. React frontend utilizing react-router-dom
+2. React frontend utilizing react-router-dom and fetch
 3. Gradle build file leveraging the `gradle-node-plugin`
 4. Utilizing Lombok
 
