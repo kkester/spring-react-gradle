@@ -22,9 +22,9 @@ repositories {
 node {
 	version = '17.9.0'
 	download = true
-	workDir = file("${project.projectDir}/src/main/webapp/nodejs")
-	npmWorkDir = file("${project.projectDir}/src/main/webapp/npm")
-	nodeProjectDir = file("${project.projectDir}/src/main/webapp")
+	workDir = file("${project.projectDir}/webapp/nodejs")
+	npmWorkDir = file("${project.projectDir}/webapp/npm")
+	nodeProjectDir = file("${project.projectDir}/webapp")
 }
 
 dependencies {
@@ -44,15 +44,19 @@ processResources {
 }
 
 task copyFrontendToBuild(type: Copy) {
-	from "$projectDir/src/main/webapp/build/"
+	from "$projectDir/webapp/build/"
 	into "$buildDir/resources/main/static"
 }
 
 task npmBuild(type: NpmTask) {
 	execOverrides {
-		it.workingDir = 'src/main/webapp'
+		it.workingDir = 'webapp'
 	}
 	args = ['run', 'build']
+}
+
+clean {
+	delete "/webapp/build"
 }
 
 copyFrontendToBuild {

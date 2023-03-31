@@ -11,8 +11,10 @@ This PoC demonstrates the following architecture, design, and coding strategies:
 
 ### Running the POC
 
-1. For the initial launch, run `npm install` in `src/main/webapp`
-2. From the project root folder, execute `gradlew bootRun`
+1. Execute `gradlew tasks` to see full list of tasks available with `gradle-node-plugin`
+1. Execute `gradlew build --dry-run` to view list of steps included in build when using `gradle-node-plugin`
+1. For the initial launch, run `gradlew npmSetup` and `gradlew npmInstall`
+1. Execute `gradlew bootRun`
 
 ### Reference Documentation
 For further reference, please consider the following sections:
