@@ -1,13 +1,18 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.3'
-	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
-	id "com.github.node-gradle.node" version "3.0.1"
 	id 'java'
+	id 'org.springframework.boot' version '3.4.0'
+	id 'io.spring.dependency-management' version '1.1.6'
+	id "com.github.node-gradle.node" version "3.0.1"
 }
 
 group = 'io.pivotal'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
 
 configurations {
 	compileOnly {
@@ -20,7 +25,7 @@ repositories {
 }
 
 node {
-	version = '17.9.0'
+	version = '22.7.0'
 	download = true
 	workDir = file("${project.projectDir}/webapp/nodejs")
 	npmWorkDir = file("${project.projectDir}/webapp/npm")

@@ -1,0 +1,27 @@
+.Main-board {
+    display: grid;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+    height: 50vh;
+    width: 50vh;
+}
+
+.Main-board-row {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.Main-board-cell {
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+    background-color: green;
+    height: 10vh;
+}
+
+.Main-board-cell-selected {
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #bf0404;
+    height: 10vh;
+}
