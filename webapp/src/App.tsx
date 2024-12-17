@@ -3,7 +3,7 @@ import './css/App.css';
 import { Link, Route, Routes } from 'react-router-dom';
 import { Main } from './pages/Main';
 import { Topics } from './pages/Topics';
-import { Board } from './pages/Board';
+import { BoardDisplay } from './pages/Board';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <Main/> }/>
           <Route path="/topics" element={ <Topics/> }/>
-          <Route path="/board" element={ <Board/> }/>
+          <Route path="/board" element={ <BoardDisplay/> }/>
         </Routes>
       </main>
     </div>

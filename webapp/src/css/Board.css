@@ -10,7 +10,7 @@
     grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
-.Main-board-cell {
+.Main-board-cell-BLACK {
     border-color: white;
     border-style: solid;
     border-width: 1px;
@@ -18,10 +18,26 @@
     height: 10vh;
 }
 
-.Main-board-cell-selected {
+.Main-board-cell-WHITE {
     border-color: white;
     border-style: solid;
     border-width: 1px;
+    background-color: blue;
+    height: 10vh;
+}
+
+.Main-board-cell-SELECTED {
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #bf0404;
+    height: 10vh;
+}
+
+.Main-board-cell-CURRENT {
+    border-color: gold;
+    border-style: solid;
+    border-width: 5px;
     background-color: #bf0404;
     height: 10vh;
 }

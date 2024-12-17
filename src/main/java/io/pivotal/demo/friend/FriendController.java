@@ -1,4 +1,4 @@
-package io.pivotal.demo;
+package io.pivotal.demo.friend;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

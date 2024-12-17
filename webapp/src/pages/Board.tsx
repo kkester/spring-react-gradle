@@ -1,74 +1,42 @@
 import React, {useEffect, useState} from 'react';
 import '../css/Board.css';
+import {Board, CellStatus, getBoard, updateBoard} from "../api/BoardApi";
 
-function getRandomInt(max : number) {
-  return Math.floor(Math.random() * max);
+const get = (s: CellStatus): string => {
+    return "Main-board-cell-" + s;
 }
 
-const get = (i : Number) : string => {
-  const value = getRandomInt(2);
-  return value === 1 ? "Main-board-cell" : "Main-board-cell-selected";
-}
+export const BoardDisplay = () => {
 
-export const Board = () => {
+    const [board, setBoard] = useState<Board>();
 
-  const [timeRemaining, setTimeRemaining] = useState(30);
+    useEffect(() => {
+        getBoard()
+            .then(response => setBoard(response))
+            .catch(error => alert(error));
+    }, [])
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTimeRemaining((prevTime) => {
-        if (prevTime <= 0) {
-          clearInterval(intervalId);
-          return 0;
-        } else {
-          return prevTime - 1;
+    let i: number = 0;
+
+    const handleOnClick = (index: number) => {
+        return () => {
+            console.log(index);
+            updateBoard(index)
+                .then(response => setBoard(response))
+                .catch(error => alert(error));
         }
-      });
-    }, 1000); // Update every 1 second
+    }
 
-    return () => clearInterval(intervalId); // Cleanup on unmount
-  }, []);
-
-  return (
-    <div id="board">
-      <h1>My Board</h1>
-      <div className="Main-board">
-        <div className="Main-board-row">
-          <div className={get(1)} />
-          <div className={get(2)} />
-          <div className={get(3)} />
-          <div className={get(4)} />
-          <div className={get(5)} />
+    return (
+        <div id="board">
+            <h1>My Board</h1>
+            <div className="Main-board">
+                {board && board.rows.map(row =>
+                    <div className="Main-board-row">
+                        {row.cells.map(c => <div className={get(c.status)} onClick={handleOnClick(i++)}/>)}
+                    </div>
+                )}
+            </div>
         </div>
-        <div className="Main-board-row">
-          <div className={get(6)} />
-          <div className={get(7)} />
-          <div className={get(8)} />
-          <div className={get(9)} />
-          <div className={get(10)} />
-        </div>
-        <div className="Main-board-row">
-          <div className={get(11)} />
-          <div className={get(12)} />
-          <div className={get(13)} />
-          <div className={get(14)} />
-          <div className={get(15)} />
-        </div>
-        <div className="Main-board-row">
-          <div className={get(16)} />
-          <div className={get(17)} />
-          <div className={get(18)} />
-          <div className={get(19)} />
-          <div className={get(20)} />
-        </div>
-        <div className="Main-board-row">
-          <div className={get(21)} />
-          <div className={get(22)} />
-          <div className={get(23)} />
-          <div className={get(24)} />
-          <div className={get(25)} />
-        </div>
-      </div>
-    </div>
-  )
+    )
 }

@@ -1,4 +1,4 @@
-package io.pivotal.demo;
+package io.pivotal.demo.friend;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
