@@ -12,5 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Board {
+
     private List<Row> rows;
+
+    public int getRowCellSize() {
+        return rows == null || rows.isEmpty() ? 0 : rows.getFirst().getCells().size();
+    }
 }

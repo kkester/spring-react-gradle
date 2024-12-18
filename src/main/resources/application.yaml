@@ -1,0 +1,4 @@
+application:
+  board:
+    row-length: 5
+    column-length: 5

@@ -11,33 +11,33 @@
 }
 
 .Main-board-cell-BLACK {
-    border-color: white;
+    border-color: antiquewhite;
     border-style: solid;
     border-width: 1px;
-    background-color: green;
+    background-color: saddlebrown;
     height: 10vh;
 }
 
 .Main-board-cell-WHITE {
-    border-color: white;
+    border-color: antiquewhite;
     border-style: solid;
     border-width: 1px;
-    background-color: blue;
+    background-color: antiquewhite;
     height: 10vh;
 }
 
 .Main-board-cell-SELECTED {
-    border-color: white;
+    border-color: antiquewhite;
     border-style: solid;
     border-width: 1px;
-    background-color: #bf0404;
+    background-color: darkslategrey;
     height: 10vh;
 }
 
 .Main-board-cell-CURRENT {
     border-color: gold;
     border-style: solid;
-    border-width: 5px;
-    background-color: #bf0404;
+    border-width: 3px;
+    background-color: darkslategrey;
     height: 10vh;
 }

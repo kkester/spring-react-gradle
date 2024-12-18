@@ -20,7 +20,6 @@ export const BoardDisplay = () => {
 
     const handleOnClick = (index: number) => {
         return () => {
-            console.log(index);
             updateBoard(index)
                 .then(response => setBoard(response))
                 .catch(error => alert(error));

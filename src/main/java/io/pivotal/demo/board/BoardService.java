@@ -1,48 +1,48 @@
 package io.pivotal.demo.board;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Service
 public class BoardService {
 
     private Board board;
 
+    @Value("${application.board.row-length}")
+    private Integer rowLength;
+
+    @Value("${application.board.column-length}")
+    private Integer columnLength;
+
     public Board createBoard() {
-        Row row1 = createBlackRow();
-        Row row2 = createWhiteRow();
-        Row row3 = createBlackRow();
-        Row row4 = createWhiteRow();
-        Row row5 = createBlackRow();
+
+        List<Row> rows = IntStream.range(0, rowLength)
+                .mapToObj(this::createRow)
+                .toList();
         board = Board.builder()
-                .rows(List.of(row1, row2, row3, row4, row5))
+                .rows(rows)
                 .build();
         return board;
     }
 
-    private Row createBlackRow() {
-        return Row.builder()
-                .cells(List.of(
-                        Cell.builder().status(CellStatus.BLACK).build(),
-                        Cell.builder().status(CellStatus.WHITE).build(),
-                        Cell.builder().status(CellStatus.BLACK).build(),
-                        Cell.builder().status(CellStatus.WHITE).build(),
-                        Cell.builder().status(CellStatus.BLACK).build()
-                ))
-                .build();
-    }
+    private Row createRow(int rowIndex) {
+        CellStatus currentStatus = ( (rowIndex & 1) == 0 ) ? CellStatus.WHITE : CellStatus.BLACK;
 
-    private Row createWhiteRow() {
-        return Row.builder()
-                .cells(List.of(
-                        Cell.builder().status(CellStatus.WHITE).build(),
-                        Cell.builder().status(CellStatus.BLACK).build(),
-                        Cell.builder().status(CellStatus.WHITE).build(),
-                        Cell.builder().status(CellStatus.BLACK).build(),
-                        Cell.builder().status(CellStatus.WHITE).build()
-                ))
-                .build();
+        List<Cell> cells = new ArrayList<>();
+        Cell firstCell = Cell.builder().status(currentStatus).build();
+        cells.add(firstCell);
+        for (int columnIndex = 1; columnIndex < columnLength; columnIndex++) {
+            CellStatus nextStatus = CellStatus.BLACK.equals(currentStatus) ? CellStatus.WHITE : CellStatus.BLACK;
+            Cell nextCell = Cell.builder().status(nextStatus).build();
+            cells.add(nextCell);
+            currentStatus = nextStatus;
+        }
+
+        return Row.builder().cells(cells).build();
     }
 
     public Board updateBoard(Integer index) {
@@ -51,9 +51,10 @@ public class BoardService {
                 .forEach(cell -> cell.setStatus(CellStatus.SELECTED))
         );
 
-        int rowIndex = index / 5;
+        int cellSize = board.getRowCellSize();
+        int rowIndex = index / cellSize;
         Row row = board.getRows().get(rowIndex);
-        row.getCells().get(index - (rowIndex * 5)).setStatus(CellStatus.CURRENT);
+        row.getCells().get(index - (rowIndex * cellSize)).setStatus(CellStatus.CURRENT);
 
         return board;
     }
